@@ -22,16 +22,15 @@ import haliB6 from "@/assets/hali/hali_b6.jpg";
 import haliB7 from "@/assets/hali/hali_b7.jpg";
 import haliB8 from "@/assets/hali/hali_b8.jpg";
 import haliB9 from "@/assets/hali/hali_b9.jpg";
-import malh4 from "@/assets/malh/malh_4.jpg";
-import malh5 from "@/assets/malh/malh_5.jpg";
-import malh6 from "@/assets/malh/malh_6.jpg";
-import malh7 from "@/assets/malh/malh_7.jpg";
-import malh8 from "@/assets/malh/malh_8.jpg";
-import malh9 from "@/assets/malh/malh_9.jpg";
-import malh10 from "@/assets/malh/malh_10.jpg";
-import malhNew1 from "@/assets/malh/malh_new_1.jpg";
-import malhNew2 from "@/assets/malh/malh_new_2.jpg";
-import malhNew3 from "@/assets/malh/malh_new_3.jpg";
+import malhPdf1 from "@/assets/malh/malh_pdf_1.jpg";
+import malhPdf2 from "@/assets/malh/malh_pdf_2.jpg";
+import malhPdf3 from "@/assets/malh/malh_pdf_3.jpg";
+import malhPdf4 from "@/assets/malh/malh_pdf_4.jpg";
+import malhPdf5 from "@/assets/malh/malh_pdf_5.jpg";
+import malhPdf6 from "@/assets/malh/malh_pdf_6.jpg";
+import malhPdf7 from "@/assets/malh/malh_pdf_7.jpg";
+import malhPdf8 from "@/assets/malh/malh_pdf_8.jpg";
+import malhPdf9 from "@/assets/malh/malh_pdf_9.jpg";
 import box1 from "@/assets/box/box_1.jpg";
 import box2 from "@/assets/box/box_2.jpg";
 import box3 from "@/assets/box/box_3.jpg";
@@ -85,21 +84,21 @@ const items: Item[] = [
   { name: "سينابون كبير", qty: "١٢ حبة", desc: SINABON_DESC, price: 75, image: haliB7, category: "الحالي" },
   { name: "خلية السينابون", price: 30, image: haliB8, category: "الحالي" },
   { name: "خلية لقيمة", price: 25, image: haliB9, category: "الحالي" },
-  { name: "ورق عنب كبير", qty: "٣٨ حبة", price: 75, image: malhNew1, category: "المالح" },
-  { name: "ورق عنب وسط", qty: "٢٥ حبة", price: 53, image: malhNew2, category: "المالح" },
-  { name: "ورق عنب صغير", qty: "١٢ حبة", price: 27, image: malhNew3, category: "المالح" },
-  { name: "مسخن دجاج كبير", qty: "٣٣ حبة", price: 75, image: malh4, category: "المالح" },
-  { name: "مسخن صغير", qty: "١٠ حبات", price: 27, image: malh5, category: "المالح" },
-  { name: "مسخن وسط", qty: "٢٠ حبة", price: 53, image: malh6, category: "المالح" },
-  { name: "ملفوف كبير", qty: "٣٧ حبة", price: 75, image: malh7, category: "المالح" },
-  { name: "ملفوف وسط", qty: "٢٥ حبة", price: 53, image: malh8, category: "المالح" },
-  { name: "ملفوف صغير", qty: "١٢ حبة", price: 27, image: malh9, category: "المالح" },
-  { name: "سمبوسة دجاج صغير", qty: "٨ حبات", price: 16, image: malh10, category: "المالح" },
-  { name: "سمبوسة دجاج وسط", qty: "١٦ حبة", price: 32, image: malh10, category: "المالح" },
-  { name: "سمبوسة جبن صغير", qty: "٨ حبات", price: 12, image: malh10, category: "المالح" },
-  { name: "سمبوسة جبن وسط", qty: "١٦ حبة", price: 24, image: malh10, category: "المالح" },
-  { name: "سمبوسة مكس دجاج وجبن صغير", qty: "٨ حبات", price: 14, image: malh10, category: "المالح" },
-  { name: "سمبوسة مكس دجاج وجبن وسط", qty: "١٦ حبة", price: 28, image: malh10, category: "المالح" },
+  { name: "ورق عنب كبير", qty: "٣٨ حبة", price: 75, image: malhPdf1, category: "المالح" },
+  { name: "ورق عنب وسط", qty: "٢٥ حبة", price: 53, image: malhPdf2, category: "المالح" },
+  { name: "ورق عنب صغير", qty: "١٢ حبة", price: 27, image: malhPdf2, category: "المالح" },
+  { name: "مسخن دجاج كبير", qty: "٣٣ حبة", price: 75, image: malhPdf3, category: "المالح" },
+  { name: "مسخن صغير", qty: "١٠ حبات", price: 27, image: malhPdf4, category: "المالح" },
+  { name: "مسخن وسط", qty: "٢٠ حبة", price: 53, image: malhPdf5, category: "المالح" },
+  { name: "ملفوف كبير", qty: "٣٧ حبة", price: 75, image: malhPdf6, category: "المالح" },
+  { name: "ملفوف وسط", qty: "٢٥ حبة", price: 53, image: malhPdf7, category: "المالح" },
+  { name: "ملفوف صغير", qty: "١٢ حبة", price: 27, image: malhPdf8, category: "المالح" },
+  { name: "سمبوسة دجاج صغير", qty: "٨ حبات", price: 16, image: malhPdf9, category: "المالح" },
+  { name: "سمبوسة دجاج وسط", qty: "١٦ حبة", price: 32, image: malhPdf9, category: "المالح" },
+  { name: "سمبوسة جبن صغير", qty: "٨ حبات", price: 12, image: malhPdf9, category: "المالح" },
+  { name: "سمبوسة جبن وسط", qty: "١٦ حبة", price: 24, image: malhPdf9, category: "المالح" },
+  { name: "سمبوسة مكس دجاج وجبن صغير", qty: "٨ حبات", price: 14, image: malhPdf9, category: "المالح" },
+  { name: "سمبوسة مكس دجاج وجبن وسط", qty: "١٦ حبة", price: 28, image: malhPdf9, category: "المالح" },
   { name: "بوكس جمعات الحالي", qty: "٣ أصناف من اختيارك", desc: "لقيمات + جبنية + تاوه + مكعبات الجبن ٢٠ حبة + مثلثات السميد ١٥ حبة + حلا لقيمة ٢٢ حبة", price: 53, image: box1, category: "البوكسات" },
   { name: "بوكس جمعات المالح", qty: "٣ أصناف من اختيارك", desc: "ورق عنب + ملفوف + مسخن + سمبوسة", price: 74, image: box3, category: "البوكسات" },
   { name: "بوكس القرمشة", desc: "مثلثات السميد + حلا لقيمة (أصابع محشوة عجينة تمر وحليب محموس) + مكعبات الجبن", price: 50, image: box2, category: "البوكسات" },

@@ -1,24 +1,424 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { Minus, Plus, ShoppingCart, Trash2, X } from "lucide-react";
+import heroImg from "@/assets/hero.jpg";
+import hali1 from "@/assets/hali/hali_1.jpg";
+import hali2 from "@/assets/hali/hali_2.jpg";
+import hali3 from "@/assets/hali/hali_3.jpg";
+import hali4 from "@/assets/hali/hali_4.jpg";
+import hali5 from "@/assets/hali/hali_5.jpg";
+import hali6 from "@/assets/hali/hali_6.jpg";
+import hali7 from "@/assets/hali/hali_7.jpg";
+import hali8 from "@/assets/hali/hali_8.jpg";
+import hali9 from "@/assets/hali/hali_9.jpg";
+import hali10 from "@/assets/hali/hali_10.jpg";
+import hali11 from "@/assets/hali/hali_11.jpg";
+import haliB1 from "@/assets/hali/hali_b1.jpg";
+import haliB2 from "@/assets/hali/hali_b2.jpg";
+import haliB3 from "@/assets/hali/hali_b3.jpg";
+import haliB4 from "@/assets/hali/hali_b4.jpg";
+import haliB5 from "@/assets/hali/hali_b5.jpg";
+import haliB6 from "@/assets/hali/hali_b6.jpg";
+import haliB7 from "@/assets/hali/hali_b7.jpg";
+import haliB8 from "@/assets/hali/hali_b8.jpg";
+import haliB9 from "@/assets/hali/hali_b9.jpg";
+import malh4 from "@/assets/malh/malh_4.jpg";
+import malh5 from "@/assets/malh/malh_5.jpg";
+import malh6 from "@/assets/malh/malh_6.jpg";
+import malh7 from "@/assets/malh/malh_7.jpg";
+import malh8 from "@/assets/malh/malh_8.jpg";
+import malh9 from "@/assets/malh/malh_9.jpg";
+import malh10 from "@/assets/malh/malh_10.jpg";
+import malhNew1 from "@/assets/malh/malh_new_1.jpg";
+import malhNew2 from "@/assets/malh/malh_new_2.jpg";
+import malhNew3 from "@/assets/malh/malh_new_3.jpg";
+import box1 from "@/assets/box/box_1.jpg";
+import box2 from "@/assets/box/box_2.jpg";
+import box3 from "@/assets/box/box_3.jpg";
+import box4 from "@/assets/box/box_4.jpg";
+import box5 from "@/assets/box/box_5.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+type Category = "الكل" | "الحالي" | "المالح" | "البوكسات";
+
+type Item = {
+  name: string;
+  desc?: string;
+  qty?: string;
+  price: number;
+  image: string;
+  category: Exclude<Category, "الكل">;
+};
+
+type CartLine = { name: string; price: number; qty: number };
+
+const LUQAIMAT_DESC = "كرات عجين ذهبية مقلية تقدم ساخنة بطعم لذيذ ومقرمش";
+const LUQAIMAT_QTY = "اضافات: شيرة / نستله / عسل / دبس تمر / سمسم وحبة سوداء";
+const JIBNIYA_DESC = "عجينة مقلية ممزوجة بالجبن تقدم ساخنة مع شيرة لذيذة تضيف لمسة حلا ناعمة";
+const TAWA_DESC = "عجينة مقلية مقرمشة مصنوعة من طحين البر والحبة السوداء تقدم مع صوص دبس التمر الغني بالنكهة";
+const MOKAABAT_DESC = "مكعبات جبن مقلية مقرمشة تقدم مع صوص دبس التمر اللذيذ ومكسرات البيكان";
+const SEMEED_DESC = "مثلثات السميد محشوة بالجبن وتقدم ساخنة مع صوص شيرة لذيذ والفستق المطحون";
+const HALA_LUQ_DESC = "رقائق العجين محشوة بالحليب المحموس وعجينة التمر والسميد وخلطة لقيمة الخاصة بصوص النستلة والقرفة والمكسرات";
+const SINABON_DESC = "عجينة قطنية محشوة بالقرفة والسكر البني الرطب بالزبدة بصوص كريمة الشيو وتوفي الكراميل المملح ومكسرات البيكان";
+
+const items: Item[] = [
+  { name: "لقيمات صغير", qty: LUQAIMAT_QTY, desc: LUQAIMAT_DESC, price: 16, image: hali1, category: "الحالي" },
+  { name: "لقيمات كبير", qty: LUQAIMAT_QTY, desc: LUQAIMAT_DESC, price: 33, image: hali3, category: "الحالي" },
+  { name: "لقيمات وسط", qty: LUQAIMAT_QTY, desc: LUQAIMAT_DESC, price: 23, image: hali2, category: "الحالي" },
+  { name: "جبنية وسط", desc: JIBNIYA_DESC, price: 23, image: hali4, category: "الحالي" },
+  { name: "جبنية صغير", desc: JIBNIYA_DESC, price: 16, image: hali5, category: "الحالي" },
+  { name: "جبنية كبير", desc: JIBNIYA_DESC, price: 33, image: hali6, category: "الحالي" },
+  { name: "تاوه وسط", desc: TAWA_DESC, price: 23, image: hali7, category: "الحالي" },
+  { name: "تاوه كبير", desc: TAWA_DESC, price: 33, image: hali8, category: "الحالي" },
+  { name: "تاوه صغير", desc: TAWA_DESC, price: 16, image: hali9, category: "الحالي" },
+  { name: "مكعبات الجبن صغير", desc: MOKAABAT_DESC, price: 17, image: hali10, category: "الحالي" },
+  { name: "مكعبات الجبن وسط", desc: MOKAABAT_DESC, price: 33, image: hali11, category: "الحالي" },
+  { name: "مثلثات السميد وسط", desc: SEMEED_DESC, price: 33, image: haliB1, category: "الحالي" },
+  { name: "مثلثات السميد صغير", desc: SEMEED_DESC, price: 17, image: haliB2, category: "الحالي" },
+  { name: "حلا لقيمة صغير", desc: HALA_LUQ_DESC, price: 23, image: haliB3, category: "الحالي" },
+  { name: "حلا لقيمة وسط", desc: HALA_LUQ_DESC, price: 42, image: haliB4, category: "الحالي" },
+  { name: "سينابون وسط", qty: "٨ حبات", desc: SINABON_DESC, price: 42, image: haliB5, category: "الحالي" },
+  { name: "سينابون صغير", qty: "٤ حبات", desc: SINABON_DESC, price: 23, image: haliB6, category: "الحالي" },
+  { name: "سينابون كبير", qty: "١٢ حبة", desc: SINABON_DESC, price: 75, image: haliB7, category: "الحالي" },
+  { name: "خلية السينابون", price: 30, image: haliB8, category: "الحالي" },
+  { name: "خلية لقيمة", price: 25, image: haliB9, category: "الحالي" },
+  { name: "ورق عنب كبير", qty: "٣٨ حبة", price: 75, image: malhNew1, category: "المالح" },
+  { name: "ورق عنب وسط", qty: "٢٥ حبة", price: 53, image: malhNew2, category: "المالح" },
+  { name: "ورق عنب صغير", qty: "١٢ حبة", price: 27, image: malhNew3, category: "المالح" },
+  { name: "مسخن دجاج كبير", qty: "٣٣ حبة", price: 75, image: malh4, category: "المالح" },
+  { name: "مسخن صغير", qty: "١٠ حبات", price: 27, image: malh5, category: "المالح" },
+  { name: "مسخن وسط", qty: "٢٠ حبة", price: 53, image: malh6, category: "المالح" },
+  { name: "ملفوف كبير", qty: "٣٧ حبة", price: 75, image: malh7, category: "المالح" },
+  { name: "ملفوف وسط", qty: "٢٥ حبة", price: 53, image: malh8, category: "المالح" },
+  { name: "ملفوف صغير", qty: "١٢ حبة", price: 27, image: malh9, category: "المالح" },
+  { name: "سمبوسة دجاج صغير", qty: "٨ حبات", price: 16, image: malh10, category: "المالح" },
+  { name: "سمبوسة دجاج وسط", qty: "١٦ حبة", price: 32, image: malh10, category: "المالح" },
+  { name: "سمبوسة جبن صغير", qty: "٨ حبات", price: 12, image: malh10, category: "المالح" },
+  { name: "سمبوسة جبن وسط", qty: "١٦ حبة", price: 24, image: malh10, category: "المالح" },
+  { name: "سمبوسة مكس دجاج وجبن صغير", qty: "٨ حبات", price: 14, image: malh10, category: "المالح" },
+  { name: "سمبوسة مكس دجاج وجبن وسط", qty: "١٦ حبة", price: 28, image: malh10, category: "المالح" },
+  { name: "بوكس جمعات الحالي", qty: "٣ أصناف من اختيارك", desc: "لقيمات + جبنية + تاوه + مكعبات الجبن ٢٠ حبة + مثلثات السميد ١٥ حبة + حلا لقيمة ٢٢ حبة", price: 53, image: box1, category: "البوكسات" },
+  { name: "بوكس جمعات المالح", qty: "٣ أصناف من اختيارك", desc: "ورق عنب + ملفوف + مسخن + سمبوسة", price: 74, image: box3, category: "البوكسات" },
+  { name: "بوكس القرمشة", desc: "مثلثات السميد + حلا لقيمة (أصابع محشوة عجينة تمر وحليب محموس) + مكعبات الجبن", price: 50, image: box2, category: "البوكسات" },
+  { name: "بوكس لقيمة مالح وحالي", desc: "مثلثات السميد، مكعبات الجبن، حلا لقيمة، ورق عنب، ملفوف، مسخن دجاج", price: 124, image: box4, category: "البوكسات" },
+  { name: "بوكس سبيشل", qty: "صنف حالي وصنف مالح من اختيارك — حجم وسط", desc: "الحالي: سينابون ٨ حبات / مكعبات الجبن ٣٠ حبة / مثلثات السميد ٢٠ حبة / حلا لقيمة ٤٠ حبة. المالح: ورق عنب ٢٥ حبة / ملفوف ٢٥ حبة / مسخن ٢٠ حبة / سمبوسة ١٦ حبة", price: 74, image: box5, category: "البوكسات" },
+];
+
+const categories: Category[] = ["الكل", "الحالي", "المالح", "البوكسات"];
+
+const WHATSAPP = "966501206793";
+const TIKTOK = "https://www.tiktok.com/@luqyma.sa?_r=1&_t=ZS-97rpd89XOBs";
+const INSTAGRAM = "https://www.instagram.com/luqyma.sa?igsh=MW9tZ2wybHhtN2Rhbw%3D%3D&utm_source=qr";
+
+const BRAND_NAME = "لقيمة";
+const BRAND_TAGLINE = "مالح وحالي";
+
+function TikTokIcon({ className }: { className?: string }) {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M19.6 6.8a5.7 5.7 0 0 1-3.4-1.1 5.7 5.7 0 0 1-2.2-3.7h-3.3v13.1a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.1a6 6 0 1 0 5.2 6V9.6a9 9 0 0 0 5.6 1.9V8.2c-.1 0 0 0 0-1.4Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function Index() {
+  const [active, setActive] = useState<Category>("الكل");
+  const [cart, setCart] = useState<CartLine[]>([]);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const filtered = useMemo(
+    () => (active === "الكل" ? items : items.filter((i) => i.category === active)),
+    [active],
+  );
+
+  const totalQty = cart.reduce((s, l) => s + l.qty, 0);
+  const totalPrice = cart.reduce((s, l) => s + l.qty * l.price, 0);
+
+  function addToCart(item: Item) {
+    setCart((prev) => {
+      const found = prev.find((l) => l.name === item.name);
+      if (found) return prev.map((l) => (l.name === item.name ? { ...l, qty: l.qty + 1 } : l));
+      return [...prev, { name: item.name, price: item.price, qty: 1 }];
+    });
+    setCartOpen(true);
+  }
+
+  function changeQty(name: string, delta: number) {
+    setCart((prev) =>
+      prev
+        .map((l) => (l.name === name ? { ...l, qty: l.qty + delta } : l))
+        .filter((l) => l.qty > 0),
+    );
+  }
+
+  function removeLine(name: string) {
+    setCart((prev) => prev.filter((l) => l.name !== name));
+  }
+
+  function checkout() {
+    if (cart.length === 0) return;
+    const lines = cart.map((l) => `• ${l.name} × ${l.qty} = ${l.qty * l.price} ر.س`).join("\n");
+    const msg = `السلام عليكم، أرغب بطلب:\n${lines}\n\nالإجمالي: ${totalPrice} ر.س`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+
+  return (
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
+      {/* Header */}
+      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4">
+          <div className="flex items-baseline gap-2">
+            <span className="font-display text-2xl leading-none text-primary md:text-3xl">{BRAND_NAME}</span>
+            <span className="text-xs tracking-widest text-muted-foreground">{BRAND_TAGLINE}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <a href={TIKTOK} target="_blank" rel="noreferrer" aria-label="تيك توك" className="hidden sm:grid h-9 w-9 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary">
+              <TikTokIcon className="h-4 w-4" />
+            </a>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="انستقرام" className="hidden sm:grid h-9 w-9 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary">
+              <InstagramIcon className="h-4 w-4" />
+            </a>
+            <button
+              onClick={() => setCartOpen(true)}
+              aria-label="السلة"
+              className="relative grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {totalQty > 0 && (
+                <span className="absolute -top-1 -right-1 grid h-5 min-w-5 place-items-center rounded-full bg-accent px-1 text-[11px] font-bold text-accent-foreground">
+                  {totalQty}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-2 md:items-center md:py-20">
+          <div>
+            <p className="mb-3 text-sm font-bold tracking-widest text-accent">منيو المطعم</p>
+            <h1 className="font-display text-5xl leading-tight text-primary md:text-7xl">
+              {BRAND_NAME}
+              <span className="block text-2xl font-normal text-foreground/80 md:text-3xl">
+                {BRAND_TAGLINE}
+              </span>
+            </h1>
+            <p className="mt-5 max-w-md text-base leading-loose text-muted-foreground md:text-lg">
+              حلا ومالح بنكهات بيتية أصيلة. اطّلع على القائمة كاملة بالأسعار وعدد الحبات، وأضف طلبك للسلة ثم أرسله عبر واتساب.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#menu" className="rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90">
+                تصفّح المنيو
+              </a>
+              <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="rounded-full border-2 border-primary bg-transparent px-6 py-3 text-sm font-bold text-primary transition hover:bg-primary/5">
+                واتساب المطعم
+              </a>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-[var(--gradient-warm)] blur-2xl" />
+            <img src={heroImg} alt={`تشكيلة منتجات ${BRAND_NAME}`} width={1024} height={1024} className="w-full rounded-[2rem] object-cover shadow-[var(--shadow-soft)]" />
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section id="menu" className="mx-auto max-w-6xl px-4 pt-4">
+        <div className="flex flex-wrap gap-2">
+          {categories.map((c) => {
+            const isActive = c === active;
+            return (
+              <button
+                key={c}
+                onClick={() => setActive(c)}
+                className={
+                  "rounded-full border px-4 py-2 text-sm font-bold transition " +
+                  (isActive
+                    ? "border-primary bg-primary text-primary-foreground shadow-[var(--shadow-card)]"
+                    : "border-border bg-card text-foreground hover:border-primary/50")
+                }
+              >
+                {c}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Menu grid */}
+      <section className="mx-auto max-w-6xl px-4 py-8 pb-28 md:py-12">
+        {filtered.length === 0 ? (
+          <div className="rounded-3xl border border-dashed border-border bg-card/50 p-10 text-center">
+            <p className="font-display text-2xl text-primary">قريباً</p>
+            <p className="mt-2 text-sm text-muted-foreground">المنتجات هتتضاف قريباً في هذا القسم.</p>
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((item) => {
+              const inCart = cart.find((l) => l.name === item.name);
+              return (
+                <article key={item.name} className="group flex overflow-hidden rounded-3xl bg-card shadow-[var(--shadow-card)] transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
+                  <div className="relative w-32 shrink-0 overflow-hidden sm:w-36">
+                    <img src={item.image} alt={item.name} loading="lazy" width={512} height={512} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between p-4">
+                    <div>
+                      <h3 className="font-display text-xl leading-tight text-foreground">{item.name}</h3>
+                      {item.qty && <p className="mt-1 text-sm font-bold text-accent">{item.qty}</p>}
+                      {item.desc && <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>}
+                    </div>
+                    <div className="mt-3 flex items-center justify-between">
+                      <span className="font-display text-2xl text-primary">
+                        {item.price}
+                        <span className="mr-1 text-xs font-bold tracking-wider text-muted-foreground">ر.س</span>
+                      </span>
+                      {inCart ? (
+                        <div className="flex items-center gap-1 rounded-full bg-primary/10 p-1">
+                          <button onClick={() => changeQty(item.name, -1)} aria-label="نقص" className="grid h-7 w-7 place-items-center rounded-full bg-background text-primary transition hover:bg-primary hover:text-primary-foreground">
+                            <Minus className="h-3.5 w-3.5" />
+                          </button>
+                          <span className="min-w-6 text-center text-sm font-bold text-primary">{inCart.qty}</span>
+                          <button onClick={() => changeQty(item.name, 1)} aria-label="زيادة" className="grid h-7 w-7 place-items-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90">
+                            <Plus className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <button onClick={() => addToCart(item)} className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition hover:bg-primary hover:text-primary-foreground">
+                          أضف للسلة
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      {/* Floating cart bar (mobile-friendly) */}
+      {totalQty > 0 && !cartOpen && (
+        <div className="fixed bottom-4 left-1/2 z-40 w-[92%] max-w-md -translate-x-1/2">
+          <button
+            onClick={() => setCartOpen(true)}
+            className="flex w-full items-center justify-between gap-3 rounded-full bg-primary px-5 py-3 text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-95"
+          >
+            <span className="flex items-center gap-2 text-sm font-bold">
+              <ShoppingCart className="h-4 w-4" />
+              عرض السلة ({totalQty})
+            </span>
+            <span className="font-display text-lg">{totalPrice} ر.س</span>
+          </button>
+        </div>
+      )}
+
+      {/* Cart drawer */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setCartOpen(false)} />
+          <aside className="relative ml-auto flex h-full w-full max-w-md flex-col bg-background shadow-2xl">
+            <div className="flex items-center justify-between border-b border-border px-5 py-4">
+              <h2 className="font-display text-2xl text-primary">سلة الطلبات</h2>
+              <button onClick={() => setCartOpen(false)} aria-label="إغلاق" className="grid h-9 w-9 place-items-center rounded-full border border-border transition hover:border-primary hover:text-primary">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto px-5 py-4">
+              {cart.length === 0 ? (
+                <div className="grid h-full place-items-center text-center">
+                  <div>
+                    <ShoppingCart className="mx-auto h-10 w-10 text-muted-foreground" />
+                    <p className="mt-3 font-display text-xl text-foreground">السلة فاضية</p>
+                    <p className="mt-1 text-sm text-muted-foreground">أضف منتجاتك المفضلة من المنيو.</p>
+                  </div>
+                </div>
+              ) : (
+                <ul className="space-y-3">
+                  {cart.map((l) => (
+                    <li key={l.name} className="flex items-center gap-3 rounded-2xl border border-border bg-card p-3">
+                      <div className="flex-1">
+                        <p className="font-bold text-foreground">{l.name}</p>
+                        <p className="text-xs text-muted-foreground">{l.price} ر.س / قطعة</p>
+                      </div>
+                      <div className="flex items-center gap-1 rounded-full bg-primary/10 p-1">
+                        <button onClick={() => changeQty(l.name, -1)} aria-label="نقص" className="grid h-7 w-7 place-items-center rounded-full bg-background text-primary transition hover:bg-primary hover:text-primary-foreground">
+                          <Minus className="h-3.5 w-3.5" />
+                        </button>
+                        <span className="min-w-6 text-center text-sm font-bold text-primary">{l.qty}</span>
+                        <button onClick={() => changeQty(l.name, 1)} aria-label="زيادة" className="grid h-7 w-7 place-items-center rounded-full bg-primary text-primary-foreground transition hover:opacity-90">
+                          <Plus className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                      <div className="w-16 text-left font-display text-lg text-primary">{l.qty * l.price}</div>
+                      <button onClick={() => removeLine(l.name)} aria-label="حذف" className="grid h-8 w-8 place-items-center rounded-full text-muted-foreground transition hover:bg-destructive/10 hover:text-destructive">
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {cart.length > 0 && (
+              <div className="border-t border-border bg-card/50 px-5 py-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-sm font-bold text-muted-foreground">الإجمالي</span>
+                  <span className="font-display text-2xl text-primary">
+                    {totalPrice} <span className="text-xs font-bold text-muted-foreground">ر.س</span>
+                  </span>
+                </div>
+                <button
+                  onClick={checkout}
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90"
+                >
+                  إرسال الطلب عبر واتساب
+                </button>
+                <button
+                  onClick={() => setCart([])}
+                  className="mt-2 w-full rounded-full border border-border px-5 py-2 text-xs font-bold text-muted-foreground transition hover:border-destructive hover:text-destructive"
+                >
+                  إفراغ السلة
+                </button>
+              </div>
+            )}
+          </aside>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="mt-12 border-t border-border bg-secondary/40">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 py-8 text-center">
+          <div className="font-display text-3xl text-primary">{BRAND_NAME}</div>
+          <p className="text-xs tracking-widest text-muted-foreground">{BRAND_TAGLINE}</p>
+          <div className="mt-2 flex items-center gap-3">
+            <a href={TIKTOK} target="_blank" rel="noreferrer" aria-label="تيك توك" className="grid h-10 w-10 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary">
+              <TikTokIcon className="h-4 w-4" />
+            </a>
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="انستقرام" className="grid h-10 w-10 place-items-center rounded-full border border-border text-foreground transition hover:border-primary hover:text-primary">
+              <InstagramIcon className="h-4 w-4" />
+            </a>
+          </div>
+          <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="mt-1 text-sm font-bold text-primary hover:underline">
+            للطلب: {WHATSAPP}
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

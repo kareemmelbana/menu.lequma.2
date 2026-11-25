@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -34,7 +35,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -74,26 +75,34 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
+    // Replace these placeholders with the app's name and description when first building the app.
+    // Each content route, / included, must still set its own head(). Never add og:image or
+    // twitter:image here: every page without its own would inherit the root's preview image.
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "منيو مطعم لقيمة" },
-      { name: "description", content: "منيو مطعم لقيمة (مالح وحالي): لقيمات، حلا، سينابون، سمبوسة، مسخن، ورق عنب، جبنية، مكعبات، سميد، بوكسات وأكثر. اطلب الآن عبر واتساب." },
-      { property: "og:title", content: "منيو مطعم لقيمة" },
-      { property: "og:description", content: "منيو مطعم لقيمة (مالح وحالي): لقيمات، حلا، سينابون، سمبوسة، مسخن، ورق عنب، جبنية، مكعبات، سميد، بوكسات وأكثر. اطلب الآن عبر واتساب." },
+      { title: "لقيمة | مالح وحالي" },
+      { name: "description", content: "قائمة لقيمة للمالح والحالي" },
+      { name: "author", content: "لقيمة" },
+      { property: "og:title", content: "لقيمة | مالح وحالي" },
+      { property: "og:description", content: "قائمة لقيمة للمالح والحالي" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "منيو مطعم لقيمة" },
-      { name: "twitter:description", content: "منيو مطعم لقيمة (مالح وحالي): لقيمات، حلا، سينابون، سمبوسة، مسخن، ورق عنب، جبنية، مكعبات، سميد، بوكسات وأكثر. اطلب الآن عبر واتساب." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29cfe0bd-0035-4c3d-b86b-1df3dcbeb6f5/id-preview-dc616c2f--eb309245-2fa6-4e7a-b0a5-d7e919c80f11.lovable.app-1783527176664.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29cfe0bd-0035-4c3d-b86b-1df3dcbeb6f5/id-preview-dc616c2f--eb309245-2fa6-4e7a-b0a5-d7e919c80f11.lovable.app-1783527176664.png" },
+      { name: "twitter:title", content: "لقيمة | مالح وحالي" },
+      { name: "twitter:description", content: "قائمة لقيمة للمالح والحالي" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Rakkas&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Rakkas&display=swap",
+      },
+      { rel: "icon", href: "/favicon.jpg", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,

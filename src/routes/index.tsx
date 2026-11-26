@@ -140,7 +140,7 @@ const WHATSAPP = "966501206793";
 const CONTACT_NUMBER = "+966 50 120 6793";
 const TIKTOK = "https://www.tiktok.com/@luqyma.sa?_r=1&_t=ZS-97rpd89XOBs";
 const INSTAGRAM = "https://www.instagram.com/luqyma.sa?igsh=MW9tZ2wybHhtN2Rhbw%3D%3D&utm_source=qr";
-
+const SNAPCHAT = "https://www.snapchat.com/add/YOUR_USERNAME";
 const BRAND_NAME = "لقيمة";
 const BRAND_TAGLINE = "مالح وحادق";
 const BRANCH_NAME = "فرع القادسية";
@@ -162,7 +162,13 @@ function InstagramIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
+function SnapchatIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M12.2 2c2.6 0 4.7 1.7 5.1 4.3.1.8.1 1.7.1 2.6.3.1.7.1 1 0 .4-.1.8.1.9.4.1.3-.1.6-.5.8-.5.2-1.1.3-1.3.6-.2.3 0 .8.4 1.5.7 1.2 1.7 2.1 2.8 2.4.4.1.5.4.3.7-.4.6-1.4.8-2 .9-.2.1-.3.4-.4.7-.1.4-.2.6-.6.6-.5 0-1.1-.2-1.8-.1-1.2.2-1.9 1.6-3.8 1.6s-2.6-1.4-3.8-1.6c-.7-.1-1.3.1-1.8.1-.4 0-.5-.2-.6-.6-.1-.3-.2-.6-.4-.7-.6-.1-1.6-.3-2-.9-.2-.3-.1-.6.3-.7 1.100-.3 2.100-1.200 2.800-2.400.4-.7.6-1.200.4-1.500-.2-.3-.8-.4-1.300-.6-.4-.2-.6-.5-.5-.8.1-.3.5-.5.9-.4.3.1.7.1 1 0 0-.9 0-1.800.1-2.600C7.500 3.700 9.600 2 12.200 2Z" />
+    </svg>
+  );
+}
 function Index() {
   const [active, setActive] = useState<Category>("الكل");
   const [cart, setCart] = useState<CartLine[]>([]);
@@ -262,6 +268,9 @@ function Index() {
             </a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="انستقرام" className="grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white/90 transition hover:border-[#d9ae69] hover:bg-white/10 hover:text-[#e4bd7b]">
               <InstagramIcon className="h-4 w-4" />
+            </a>
+            <a href={SNAPCHAT} target="_blank" rel="noreferrer" aria-label="سناب شات" className="grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white/90 transition hover:border-[#d9ae69] hover:bg-white/10 hover:text-[#e4bd7b]">
+             <SnapchatIcon className="h-4 w-4" />
             </a>
             <button
               onClick={() => setCartOpen(true)}

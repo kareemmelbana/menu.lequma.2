@@ -41,25 +41,25 @@ import box5 from "@/assets/box/box_5.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "لقيمة | مالح وحادق - فرع القادسية" },
+      { title: "لقيمة | مالح وحالي - فرع القادسية" },
       {
         name: "description",
         content:
-          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحالي في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
-      { property: "og:title", content: "لقيمة | مالح وحادق - فرع القادسية" },
+      { property: "og:title", content: "لقيمة | مالح وحالي - فرع القادسية" },
       {
         property: "og:description",
         content:
-          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحالي في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "لقيمة | مالح وحادق - فرع القادسية" },
+      { name: "twitter:title", content: "لقيمة | مالح وحالي - فرع القادسية" },
       {
         name: "twitter:description",
         content:
-          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحالي في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
     ],
   }),
@@ -141,8 +141,9 @@ const CONTACT_NUMBER = "+966 50 120 6793";
 const TIKTOK = "https://www.tiktok.com/@luqyma.sa?_r=1&_t=ZS-97rpd89XOBs";
 const INSTAGRAM = "https://www.instagram.com/luqyma.sa?igsh=MW9tZ2wybHhtN2Rhbw%3D%3D&utm_source=qr";
 const SNAPCHAT = "https://snapchat.com/t/xI5S37li";
+
 const BRAND_NAME = "لقيمة";
-const BRAND_TAGLINE = "مالح وحادق";
+const BRAND_TAGLINE = "مالح وحالي";
 const BRANCH_NAME = "فرع القادسية";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -162,13 +163,15 @@ function InstagramIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
 function SnapchatIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M12.2 2c2.6 0 4.7 1.7 5.1 4.3.1.8.1 1.7.1 2.6.3.1.7.1 1 0 .4-.1.8.1.9.4.1.3-.1.6-.5.8-.5.2-1.1.3-1.3.6-.2.3 0 .8.4 1.5.7 1.2 1.7 2.1 2.8 2.4.4.1.5.4.3.7-.4.6-1.4.8-2 .9-.2.1-.3.4-.4.7-.1.4-.2.6-.6.6-.5 0-1.1-.2-1.8-.1-1.2.2-1.9 1.6-3.8 1.6s-2.6-1.4-3.8-1.6c-.7-.1-1.3.1-1.8.1-.4 0-.5-.2-.6-.6-.1-.3-.2-.6-.4-.7-.6-.1-1.6-.3-2-.9-.2-.3-.1-.6.3-.7 1.100-.3 2.100-1.200 2.800-2.400.4-.7.6-1.200.4-1.500-.2-.3-.8-.4-1.300-.6-.4-.2-.6-.5-.5-.8.1-.3.5-.5.9-.4.3.1.7.1 1 0 0-.9 0-1.800.1-2.600C7.500 3.700 9.600 2 12.200 2Z" />
+      <path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.022.345-.03.51.075.045.203.09.401.09.3-.016.659-.12 1.033-.301.165-.088.344-.104.464-.104.182 0 .359.029.509.09.45.149.734.479.734.838.015.449-.39.839-1.213 1.168-.089.029-.209.075-.344.119-.45.135-1.139.36-1.333.81-.09.224-.061.524.12.868l.015.015c.06.136 1.526 3.475 4.791 4.014.255.044.435.27.42.509 0 .075-.015.149-.045.225-.24.569-1.273.988-3.146 1.271-.059.091-.12.375-.164.57-.029.179-.074.36-.134.553-.076.271-.27.405-.555.405h-.03c-.135 0-.313-.031-.538-.074-.36-.075-.765-.135-1.273-.135-.3 0-.599.015-.913.074-.6.104-1.123.464-1.723.884-.853.599-1.826 1.288-3.294 1.288-.06 0-.119-.015-.18-.015h-.149c-1.468 0-2.427-.675-3.279-1.288-.599-.42-1.107-.779-1.707-.884-.314-.045-.629-.074-.928-.074-.54 0-.958.089-1.272.149-.211.043-.391.074-.54.074-.374 0-.523-.224-.583-.42-.061-.192-.09-.389-.135-.567-.046-.181-.105-.494-.166-.57-1.918-.222-2.95-.642-3.189-1.226-.031-.063-.052-.15-.055-.225-.015-.243.165-.465.42-.509 3.264-.54 4.73-3.879 4.791-4.02l.016-.029c.18-.345.224-.645.119-.869-.195-.434-.884-.658-1.332-.809-.121-.029-.24-.075-.346-.12-1.107-.435-1.257-.93-1.197-1.273.09-.479.674-.793 1.168-.793.146 0 .27.029.383.074.42.194.789.3 1.104.3.234 0 .384-.06.465-.105l-.046-.569c-.098-1.626-.225-3.651.307-4.837C7.392 1.077 10.739.807 11.727.807l.419-.015h.06z" />
     </svg>
   );
 }
+
 function Index() {
   const [active, setActive] = useState<Category>("الكل");
   const [cart, setCart] = useState<CartLine[]>([]);
@@ -270,7 +273,7 @@ function Index() {
               <InstagramIcon className="h-4 w-4" />
             </a>
             <a href={SNAPCHAT} target="_blank" rel="noreferrer" aria-label="سناب شات" className="grid h-9 w-9 place-items-center rounded-full border border-white/25 text-white/90 transition hover:border-[#d9ae69] hover:bg-white/10 hover:text-[#e4bd7b]">
-             <SnapchatIcon className="h-4 w-4" />
+              <SnapchatIcon className="h-4 w-4" />
             </a>
             <button
               onClick={() => setCartOpen(true)}
@@ -293,7 +296,7 @@ function Index() {
         <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(#e4bd7b 0.7px, transparent 0.7px)", backgroundSize: "22px 22px" }} />
         <div className="relative mx-auto grid max-w-7xl gap-5 px-4 pb-8 pt-5 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-8 md:px-8 md:py-20">
           <div className="order-2 md:order-1">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#e4bd7b]/35 bg-white/5 px-3 py-1.5 text-[10px] font-bold text-[#e4bd7b] md:px-4 md:py-2 md:text-xs"><Sparkles className="h-3.5 w-3.5"/> لقيمة · مالح وحادق · {BRANCH_NAME}</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#e4bd7b]/35 bg-white/5 px-3 py-1.5 text-[10px] font-bold text-[#e4bd7b] md:px-4 md:py-2 md:text-xs"><Sparkles className="h-3.5 w-3.5"/> لقيمة · مالح وحالي · {BRANCH_NAME}</span>
             <h1 className="mt-3 font-display text-5xl leading-[1.05] text-[#f1d9ad] md:mt-6 md:text-8xl">{BRAND_NAME}<span className="mt-2 block text-xl font-normal text-white/80 md:mt-3 md:text-3xl">{BRAND_TAGLINE} بطابع يليق بجمعتكم</span></h1>
             <p className="mt-3 max-w-lg text-sm leading-7 text-white/65 md:mt-6 md:text-lg md:leading-8">من لقيماتنا الذهبية إلى الموالح المحضّرة بعناية؛ اختاروا أصنافكم المفضلة واستمتعوا بتفاصيل تصنع لحظات حلوة.</p>
             <div className="mt-4 flex flex-wrap items-center gap-2.5 md:mt-8 md:gap-3"><a href="#menu" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d9ae69] px-5 py-3 text-xs font-black text-[#261911] shadow-lg transition hover:-translate-y-0.5 md:px-7 md:py-3.5 md:text-sm">اكتشفوا المنيو <ArrowDown className="h-4 w-4"/></a><a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-white/25 px-5 py-3 text-xs font-bold text-white transition hover:bg-white/10 md:px-6 md:py-3.5 md:text-sm">تواصلوا معنا</a></div>
@@ -538,6 +541,9 @@ function Index() {
             </a>
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="انستقرام" className="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white transition hover:border-[#d9ae69] hover:text-[#d9ae69]">
               <InstagramIcon className="h-4 w-4" />
+            </a>
+            <a href={SNAPCHAT} target="_blank" rel="noreferrer" aria-label="سناب شات" className="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white transition hover:border-[#d9ae69] hover:text-[#d9ae69]">
+              <SnapchatIcon className="h-4 w-4" />
             </a>
           </div>
           <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="mt-1 text-sm font-bold text-[#e4bd7b] hover:underline">

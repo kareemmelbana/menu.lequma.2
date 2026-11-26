@@ -238,9 +238,7 @@ function Index() {
     const fulfillmentDetails = fulfillment === "delivery"
       ? `طريقة الاستلام: توصيل\nالعنوان: ${deliveryAddress.trim()}`
       : `طريقة الاستلام: استلام من ${BRANCH_NAME}`;
-    const paymentDetails = fulfillment === "pickup"
-      ? `\nطريقة الدفع عند الاستلام: ${paymentMethod === "cash" ? "كاش" : "شبكة"}`
-      : "";
+    const paymentDetails = `\nطريقة الدفع عند الاستلام: ${paymentMethod === "cash" ? "كاش" : "شبكة"}`;
     const msg = `السلام عليكم، أرغب بطلب:\n${lines}\n\n${fulfillmentDetails}${paymentDetails}\nالإجمالي: ${totalPrice} ر.س`;
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
     setCartOpen(false);
@@ -475,21 +473,19 @@ function Index() {
                     </div>
                   )}
 
-                  {fulfillment === "pickup" && (
-                    <fieldset>
-                      <legend className="mb-3 text-sm font-black text-foreground">طريقة الدفع عند الاستلام</legend>
-                      <div className="grid grid-cols-2 gap-2.5">
-                        <label className={`flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 text-sm font-bold transition ${paymentMethod === "cash" ? "border-primary bg-primary/5 text-primary ring-1 ring-primary/20" : "border-border bg-card text-foreground hover:border-primary/40"}`}>
-                          <input type="radio" name="payment" value="cash" checked={paymentMethod === "cash"} onChange={() => setPaymentMethod("cash")} className="sr-only" />
-                          <Banknote className="h-4 w-4" /> كاش
-                        </label>
-                        <label className={`flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 text-sm font-bold transition ${paymentMethod === "network" ? "border-primary bg-primary/5 text-primary ring-1 ring-primary/20" : "border-border bg-card text-foreground hover:border-primary/40"}`}>
-                          <input type="radio" name="payment" value="network" checked={paymentMethod === "network"} onChange={() => setPaymentMethod("network")} className="sr-only" />
-                          <CreditCard className="h-4 w-4" /> شبكة
-                        </label>
-                      </div>
-                    </fieldset>
-                  )}
+                  <fieldset>
+                    <legend className="mb-3 text-sm font-black text-foreground">طريقة الدفع عند الاستلام</legend>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <label className={`flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 text-sm font-bold transition ${paymentMethod === "cash" ? "border-primary bg-primary/5 text-primary ring-1 ring-primary/20" : "border-border bg-card text-foreground hover:border-primary/40"}`}>
+                        <input type="radio" name="payment" value="cash" checked={paymentMethod === "cash"} onChange={() => setPaymentMethod("cash")} className="sr-only" />
+                        <Banknote className="h-4 w-4" /> كاش
+                      </label>
+                      <label className={`flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-xl border px-3 text-sm font-bold transition ${paymentMethod === "network" ? "border-primary bg-primary/5 text-primary ring-1 ring-primary/20" : "border-border bg-card text-foreground hover:border-primary/40"}`}>
+                        <input type="radio" name="payment" value="network" checked={paymentMethod === "network"} onChange={() => setPaymentMethod("network")} className="sr-only" />
+                        <CreditCard className="h-4 w-4" /> شبكة
+                      </label>
+                    </div>
+                  </fieldset>
                   {checkoutError && <p role="alert" className="rounded-xl bg-destructive/10 px-3 py-2 text-xs font-bold text-destructive">{checkoutError}</p>}
                 </div>
               )}

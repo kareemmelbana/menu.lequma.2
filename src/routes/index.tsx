@@ -140,7 +140,7 @@ const WHATSAPP = "966501206793";
 const CONTACT_NUMBER = "+966 50 120 6793";
 const TIKTOK = "https://www.tiktok.com/@luqyma.sa?_r=1&_t=ZS-97rpd89XOBs";
 const INSTAGRAM = "https://www.instagram.com/luqyma.sa?igsh=MW9tZ2wybHhtN2Rhbw%3D%3D&utm_source=qr";
-const SNAPCHAT = "https://www.snapchat.com/add/YOUR_USERNAME";
+const SNAPCHAT = "https://snapchat.com/t/xI5S37li";
 const BRAND_NAME = "لقيمة";
 const BRAND_TAGLINE = "مالح وحادق";
 const BRANCH_NAME = "فرع القادسية";

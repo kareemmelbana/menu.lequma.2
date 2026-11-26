@@ -41,25 +41,25 @@ import box5 from "@/assets/box/box_5.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "لقيمة | مالح وحادق" },
+      { title: "لقيمة | مالح وحادق - فرع القادسية" },
       {
         name: "description",
         content:
-          "منيو لقيمة للمالح والحادق. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
-      { property: "og:title", content: "لقيمة | مالح وحادق" },
+      { property: "og:title", content: "لقيمة | مالح وحادق - فرع القادسية" },
       {
         property: "og:description",
         content:
-          "منيو لقيمة للمالح والحادق. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "لقيمة | مالح وحادق" },
+      { name: "twitter:title", content: "لقيمة | مالح وحادق - فرع القادسية" },
       {
         name: "twitter:description",
         content:
-          "منيو لقيمة للمالح والحادق. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
+          "منيو لقيمة للمالح والحادق في فرع القادسية. اطلبوا لقيمات، سمبوسة، مشروبات وقهوة سعودية عبر واتساب.",
       },
     ],
   }),
@@ -143,6 +143,7 @@ const INSTAGRAM = "https://www.instagram.com/luqyma.sa?igsh=MW9tZ2wybHhtN2Rhbw%3
 
 const BRAND_NAME = "لقيمة";
 const BRAND_TAGLINE = "مالح وحادق";
+const BRANCH_NAME = "فرع القادسية";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -236,7 +237,7 @@ function Index() {
     const lines = cart.map((l) => `• ${l.name} × ${l.qty} = ${l.qty * l.price} ر.س`).join("\n");
     const fulfillmentDetails = fulfillment === "delivery"
       ? `طريقة الاستلام: توصيل\nالعنوان: ${deliveryAddress.trim()}`
-      : "طريقة الاستلام: استلام من الفرع";
+      : `طريقة الاستلام: استلام من ${BRANCH_NAME}`;
     const paymentDetails = fulfillment === "pickup"
       ? `\nطريقة الدفع عند الاستلام: ${paymentMethod === "cash" ? "كاش" : "شبكة"}`
       : "";
@@ -285,7 +286,7 @@ function Index() {
         <div className="absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(#e4bd7b 0.7px, transparent 0.7px)", backgroundSize: "22px 22px" }} />
         <div className="relative mx-auto grid max-w-7xl gap-5 px-4 pb-8 pt-5 md:grid-cols-[.9fr_1.1fr] md:items-center md:gap-8 md:px-8 md:py-20">
           <div className="order-2 md:order-1">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#e4bd7b]/35 bg-white/5 px-3 py-1.5 text-[10px] font-bold text-[#e4bd7b] md:px-4 md:py-2 md:text-xs"><Sparkles className="h-3.5 w-3.5"/> لقيمة · مالح وحادق</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#e4bd7b]/35 bg-white/5 px-3 py-1.5 text-[10px] font-bold text-[#e4bd7b] md:px-4 md:py-2 md:text-xs"><Sparkles className="h-3.5 w-3.5"/> لقيمة · مالح وحادق · {BRANCH_NAME}</span>
             <h1 className="mt-3 font-display text-5xl leading-[1.05] text-[#f1d9ad] md:mt-6 md:text-8xl">{BRAND_NAME}<span className="mt-2 block text-xl font-normal text-white/80 md:mt-3 md:text-3xl">{BRAND_TAGLINE} بطابع يليق بجمعتكم</span></h1>
             <p className="mt-3 max-w-lg text-sm leading-7 text-white/65 md:mt-6 md:text-lg md:leading-8">من لقيماتنا الذهبية إلى الموالح المحضّرة بعناية؛ اختاروا أصنافكم المفضلة واستمتعوا بتفاصيل تصنع لحظات حلوة.</p>
             <div className="mt-4 flex flex-wrap items-center gap-2.5 md:mt-8 md:gap-3"><a href="#menu" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#d9ae69] px-5 py-3 text-xs font-black text-[#261911] shadow-lg transition hover:-translate-y-0.5 md:px-7 md:py-3.5 md:text-sm">اكتشفوا المنيو <ArrowDown className="h-4 w-4"/></a><a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-white/25 px-5 py-3 text-xs font-bold text-white transition hover:bg-white/10 md:px-6 md:py-3.5 md:text-sm">تواصلوا معنا</a></div>
@@ -461,7 +462,7 @@ function Index() {
                       <label className={`flex min-h-[76px] cursor-pointer items-center gap-3 rounded-2xl border p-3 transition ${fulfillment === "pickup" ? "border-primary bg-primary/5 ring-1 ring-primary/20" : "border-border bg-card hover:border-primary/40"}`}>
                         <input type="radio" name="fulfillment" value="pickup" checked={fulfillment === "pickup"} onChange={() => { setFulfillment("pickup"); setCheckoutError(""); }} className="sr-only" />
                         <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ${fulfillment === "pickup" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}><Store className="h-5 w-5" /></span>
-                        <span><span className="block text-sm font-bold text-foreground">استلام</span><span className="mt-0.5 block text-[10px] text-muted-foreground">من الفرع</span></span>
+                        <span><span className="block text-sm font-bold text-foreground">استلام</span><span className="mt-0.5 block text-[10px] text-muted-foreground">{BRANCH_NAME}</span></span>
                       </label>
                     </div>
                   </fieldset>
@@ -525,7 +526,7 @@ function Index() {
       <footer id="contact" className="mt-12 border-t border-[#513c2d] bg-[#261911] text-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-4 py-10 text-center">
           <div className="font-display text-3xl text-[#e4bd7b]">{BRAND_NAME}</div>
-          <p className="text-xs tracking-normal text-white/55">{BRAND_TAGLINE}</p>
+          <p className="text-xs tracking-normal text-white/55">{BRAND_TAGLINE} · {BRANCH_NAME}</p>
           <div className="mt-2 flex items-center gap-3">
             <a href={TIKTOK} target="_blank" rel="noreferrer" aria-label="تيك توك" className="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white transition hover:border-[#d9ae69] hover:text-[#d9ae69]">
               <TikTokIcon className="h-4 w-4" />
